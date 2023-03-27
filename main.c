@@ -1,19 +1,46 @@
 #include <stdio.h>
 #include <time.h>
+
+#define PC_FWD 2 // ??
+#define PC_BKW 3
+
 /*
- * @brief Initializes a percentage counter from 0 or 100 (indicated by progressDirection) and it
+ * Status: To develop-> modification of double value of functions to an integer value for the case of the integer counter.
+ * Then program another one that is prepared for double values.
+ * Increasing and decreasing values.
+ * Correction of errors in case the function exceds 100 or 0.
+ * Graphic bar of "#" symbols (appart function).
+ *
+ * Doesn't work the definition of macros
+ * */
+
+/*
+ * @brief Initializes a percentage integer counter from 0 or 100 (indicated by progressDirection) and it
  * incrementes or decrementes "step" unities each round.
  *
  * @description Starts ...
  * Used to manage loading bars.
  *
+ * @param attemptsQtty: quantity of times we want our percentage function to move. In order of the attempts the function
+ * will calculate de step to move through the designed values.
+ * @param direction Determines direction of the counter.
+ *         #PCT_INC: Increasing values, from 0 to 100 increasing values.
+ *         #PCT_DEC:  Decreasing values, from 0 to 100 decreasing values.
+ * @date 03-2023
  * @author Franco Macén
  * */
-void initPercentage(int attempts, int retry,int *iPercentage, int* iPercentageStep){
+
+
+void initPercentageInt(int attempts, int direction,int *iPercentage, int* iPercentageStep){
     double dPercentageStep;
-    *iPercentage = 100;
+
+    if(direction == 2)
+        *iPercentage = 0;
+    else
+        *iPercentage = 100;
+
     dPercentageStep = (double)100 / (double)attempts ;
-    printf("Porcentaje inicial en double: %.2f\n", dPercentageStep);
+    printf("Porcentaje step en double: %.2f\n", dPercentageStep);
 
     if(dPercentageStep >=0){
         if(dPercentageStep < 1){
@@ -54,7 +81,7 @@ int main()
 {   int i = 0;
     int iPercentage = 0, iPercentageStep=0;
 
-    initPercentage( 4, 3, &iPercentage, &iPercentageStep);
+    initPercentageInt( 4, 2, &iPercentage, &iPercentageStep);
 
     for (i = 0; iPercentage > 0; i++){
         printf("%d\n", iPercentage);
