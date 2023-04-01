@@ -1,8 +1,10 @@
 #include <stdio.h>
+#include <stdlib.h>
 #include <time.h>
+#include <windows.h>
 
-#define PC_FWD 2 // ??
-#define PC_BKW 3
+#define PCTG_INCR 2 // ??
+#define PCTG_DECR 3
 
 /*
  * Status: To develop-> modification of double value of functions to an integer value for the case of the integer counter.
@@ -24,8 +26,8 @@
  * @param attemptsQtty: quantity of times we want our percentage function to move. In order of the attempts the function
  * will calculate de step to move through the designed values.
  * @param direction Determines direction of the counter.
- *         #PCT_INC: Increasing values, from 0 to 100 increasing values.
- *         #PCT_DEC:  Decreasing values, from 0 to 100 decreasing values.
+ *         #PCTG_INCR: Increasing values, from 0 to 100 increasing values.
+ *         #PCTG_DECR:  Decreasing values, from 0 to 100 decreasing values.
  * @date 03-2023
  * @author Franco Macén
  * */
@@ -81,12 +83,12 @@ int main()
 {   int i = 0;
     int iPercentage = 0, iPercentageStep=0;
 
-    initPercentageInt( 4, 2, &iPercentage, &iPercentageStep);
+    initPercentageInt( 4, PCTG_INCR, &iPercentage, &iPercentageStep);
 
     for (i = 0; iPercentage > 0; i++){
         printf("%d\n", iPercentage);
         advancePercentage(iPercentageStep, &iPercentage);
-        sleep(1);
+        // sleep(1);
     }
     return 0;
 }
